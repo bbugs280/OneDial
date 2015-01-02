@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
 //                $scope.$broadcast('scroll.refreshComplete');
             }
 
-
+            generateT9Out(input);
             // find all contacts with values in Phone Numbers
             if (window.navigator && window.navigator.contacts){
                 var options      = new ContactFindOptions();
