@@ -32,54 +32,26 @@ KEYPAD['9']='WXYZ';
 function generateT9Out(keys){
     var outputs = [];
     var elementSize = keys.length;
-    var totalOfCombination = 0;
+    var currentCombination = 0;
 
     //Calc how many combination
     for (var i=keys.length-1;i>=0;i--){
         var keypad = KEYPAD[keys[i]];
+
 //        totalOfCombination = keypad.length * totalOfCombination;
-        fillOutput(outputs, keypad);
+        console.log("currentCombination " + currentCombination);
+        outputs=fillOutput(outputs, keypad, currentCombination);
+        if (currentCombination ==0){
+            currentCombination = keypad.length;
+        }else{
+            currentCombination = currentCombination*keypad.length;
+        }
     }
-    console.log("totalOfCombination = "+totalOfCombination);
-
-
-
-//    for (var x=0;x<elementSize;x++){
-//        for (var y=0;y<keys.length;y++){
-//            console.log(KEYPAD[keys[y]]);
-//            var keypad = KEYPAD[keys[y]]
-//            for (var i=0;i<keypad.length;i++){
-//                outputs[];
-//            }
-//        }
-//    }
-
-//    if (keys){
-//        for (var i=0;i< keys.length;i++){
-//            console.log(KEYPAD[keys[i]]);
-//            var keypad = KEYPAD[keys[i]];
-//            for (var j=0;j<keypad.length;j++){
-//                console.log("keypad = "+keypad[j]);
-//                //Check Output
-//                var letter = keypad[j];
-//
-//
-//                if (keys.length==1){
-//                    outputs.push(keypad[j]);
-//                    console.log("keypad = "+keypad[j] +" pused");
-//                }else{
-//                    for (var x in outputs){
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
     console.log(" Outputs = "+ outputs);
     return outputs;
 }
 
-function fillOutput(outputs, keypad){
+function fillOutput(outputs, keypad, currentCombination){
     console.log("fillOutput > outputs start = "+outputs);
     if (outputs.length == 0){
         for (var i=0;i<keypad.length;i++){
@@ -88,20 +60,32 @@ function fillOutput(outputs, keypad){
     }else{
         console.log("fillOutput > outputs not empty = "+outputs);
         //create / duplicate elements for the next set
-        for (var i=0;i<outputs.length;i++){
-            
-        }
-
-        for (var i=0;i<outputs.length;i++){
-            console.log("fillOutput > outputs element loop start = "+outputs);
-            var element = outputs[i];
-            for (var j=0;j<keypad.length;j++){
-                console.log("fillOutput > keypad loop start = "+element + keypad[j]);
-                element = keypad[j] + element;
-                outputs[i] = element;
+        outputs = fillArray(outputs, keypad.length);
+        console.log("fillOutput > fillArray = "+outputs);
+        for (var j=0;j<keypad.length;j++){
+            console.log("fillOutput > keypad loop start = "+ keypad[j]);
+            var startIndex = (j)*currentCombination;
+            var endIndex = startIndex+currentCombination;
+            console.log("Range of Index");
+            console.log(startIndex);
+            console.log(endIndex);
+            for (var i=startIndex;i<endIndex;i++){
+                console.log("index = "+ i);
+                console.log("output before element = "+ outputs[i]);
+                outputs[i] = keypad[j]+outputs[i];
+                console.log("output element = "+ outputs[i]);
             }
         }
+
     }
     console.log("fillOutput > outputs end = "+outputs);
+    return outputs;
+}
 
+function fillArray(value, len) {
+    var arr = [];
+    for (var i = 0; i < len; i++) {
+        arr = arr.concat(value);
+    }
+    return arr;
 }
