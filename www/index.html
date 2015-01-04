@@ -24,13 +24,14 @@
 
     <script src="lib/PhoneFormat.js"></script>
     <script src="js/T9.js"></script>
+    <script src="js/contacts.js"></script>
   </head>
   <body ng-app="starter" ng-controller="MainCtrl">
     <ion-pane>
         <div class="bar bar-header bar-dark item-input-inset" style="height: 70px">
             <label class="item-input-wrapper">
                 <i class="icon ion-search placeholder-icon" style=""></i>
-                <input type="tel" placeholder="" style="font-size:x-large;height: 40px" ng-model="numberInput" ng-change="findContacts(numberInput)">
+                <input type="tel" placeholder="" style="font-size:x-large;height: 40px" ng-model="numberInput" ng-keyup="findContacts(numberInput)">
             </label>
             <button class="button button-clear">
                 <i class="icon ion-person-add"></i>

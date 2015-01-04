@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="fb4a1664-0a29-4715-9ecd-9316e703acf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/T9.js" afterPath="$PROJECT_DIR$/www/js/T9.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
     </list>
+=======
+    <list default="true" id="fb4a1664-0a29-4715-9ecd-9316e703acf4" name="Default" comment="" />
+>>>>>>> Stashed changes
     <ignored path="OneDial.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

@@ -27,11 +27,10 @@ KEYPAD['9']='WXYZ';
 // CDG,CDH,CDI, CEG,CEH,CEI, CFG,CFH,CFI] n=3X3x3=27
 
 // When Input (keys) = 237
-//    [ADG,ADH,ADI, AEG,AEH,AEI,AFG,AFH,AFI, BDG,BDH,BDI,BEG,BEH,BEI,BFG,BFH,BFI,CDG,CDH,CDI, CEG,CEH,CEI, CFG,CFH,CFI] n=3x3x4=36
+//    [ADP,ADQ,ADR,ADS,AEP,AEQ,AER,AES,AFP,AFQ,AFR,AFS,BDP,BDQ,BDR,BDS,BEP,BEQ,BER,BES,BFP,BFQ,BFR,BFS,CDP,CDQ,CDR,CDS,CEP,CEQ,CER,CES,CFP,CFQ,CFR,CFS] n=3x3x4=36
 
 function generateT9Out(keys){
     var outputs = [];
-    var elementSize = keys.length;
     var currentCombination = 0;
 
     //Calc how many combination
@@ -39,7 +38,7 @@ function generateT9Out(keys){
         var keypad = KEYPAD[keys[i]];
 
 //        totalOfCombination = keypad.length * totalOfCombination;
-        console.log("currentCombination " + currentCombination);
+//        console.log("currentCombination " + currentCombination);
         outputs=fillOutput(outputs, keypad, currentCombination);
         if (currentCombination ==0){
             currentCombination = keypad.length;
@@ -47,6 +46,7 @@ function generateT9Out(keys){
             currentCombination = currentCombination*keypad.length;
         }
     }
+    console.log(" Outputs Count = "+ outputs.length);
     console.log(" Outputs = "+ outputs);
     return outputs;
 }
@@ -61,24 +61,24 @@ function fillOutput(outputs, keypad, currentCombination){
         console.log("fillOutput > outputs not empty = "+outputs);
         //create / duplicate elements for the next set
         outputs = fillArray(outputs, keypad.length);
-        console.log("fillOutput > fillArray = "+outputs);
+//        console.log("fillOutput > fillArray = "+outputs);
         for (var j=0;j<keypad.length;j++){
-            console.log("fillOutput > keypad loop start = "+ keypad[j]);
+//            console.log("fillOutput > keypad loop start = "+ keypad[j]);
             var startIndex = (j)*currentCombination;
             var endIndex = startIndex+currentCombination;
-            console.log("Range of Index");
-            console.log(startIndex);
-            console.log(endIndex);
+//            console.log("Range of Index");
+//            console.log(startIndex);
+//            console.log(endIndex);
             for (var i=startIndex;i<endIndex;i++){
-                console.log("index = "+ i);
-                console.log("output before element = "+ outputs[i]);
+//                console.log("index = "+ i);
+//                console.log("output before element = "+ outputs[i]);
                 outputs[i] = keypad[j]+outputs[i];
-                console.log("output element = "+ outputs[i]);
+//                console.log("output element = "+ outputs[i]);
             }
         }
 
     }
-    console.log("fillOutput > outputs end = "+outputs);
+//    console.log("fillOutput > outputs end = "+outputs);
     return outputs;
 }
 
